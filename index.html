@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="href="https://fonts.googleapis.com/css?family=Archivo+Black&display=swap" rel="stylesheet">  
+     <title>Document</title>
+    <style>
+        .playful {
+        color: var(--text);
+        text-shadow: 
+            6px 6px        var(--shadow), 
+            5.75px 5.75px  var(--shadow), 
+            5.5px 5.5px    var(--shadow), 
+            5.25px 5.25px  var(--shadow),
+            5px 5px        var(--shadow), 
+            4.75px 4.75px  var(--shadow), 
+            4.5px 4.5px    var(--shadow), 
+            4.25px 4.25px  var(--shadow),
+            4px 4px        var(--shadow),
+            3.75px 3.75px  var(--shadow),
+            3.5px 3.5px    var(--shadow),
+            3.25px 3.25px  var(--shadow),
+            3px 3px        var(--shadow),
+            2.75px 2.75px  var(--shadow),
+            2.5px 2.5px    var(--shadow),
+            2.25px 2.25px  var(--shadow),
+            2px 2px        var(--shadow),
+            1.75px 1.75px  var(--shadow),
+            1.5px 1.5px    var(--shadow),
+            1.25px 1.25px  var(--shadow),
+            1px 1px        var(--shadow),
+            0.75px 0.75px  var(--shadow),
+            0.5px 0.5px    var(--shadow),
+            0.25px 0.25px  var(--shadow);
+        }
+        h1 {
+            font-family: "Archivo Black", "Archivo", sans-serif;
+            font-weight: normal;
+            display: block;
+            font-size: 42px;
+          
+            }
+            :root {
+        --background: #E4FFF7;
+        --shadow: #E485F8;
+        --text: #bdbdbd;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container mt-5 mb-3 ">
+        <div class="card" style="background-color:rgb(155, 138, 199); border-color:darkblue;">
+          <div class="card-body ">
+            <h1 class="card-title text-uppercase playful" align="center">old car Price prediction</h1> 
+          </div>
+        </div>
+    </div>
+    <section>
+        <div class="container">
+            <form class="row g-5 needs-validation" action="{{ url_for('predict')}}" method="post" novalidate>
+                <div class="col-md-6">
+                    <label for="validationCustom01" class="form-label">Manufecture Year</label>
+                    <input type="text" class="form-control" autocomplete="ON"  name="manufactureYear" type="number "  value="" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="validationCustom02" class="form-label">Showroom Price? (In lakhs)</label>
+                    <input type="text" class="form-control" autocomplete="ON" name="presentPrice" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="validationCustom01" class="form-label">How Many Kilometers Drived?</label>
+                    <input type="text" class="form-control" autocomplete="ON"  name="Kms_Driven" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="" class="form-label">How much owners previously had the car?</label>
+                    <select class="form-select"  name="ownerType">
+                        <option selected>Select</option>
+                        <option value="0">First</option>
+                        <option value="1">Second</option>
+                        <option value="3">Third</option>
+                    </select>
+                
+                </div>
+                
+                    
+                <div class="col-md-6">
+                    <label for="" class="form-label">What Is the Fuel type?</label>
+                        <select class="form-select" name="fuelType" >
+                            <option selected>Select</option>
+                            <option value="1">Petrol</option>
+                            <option value="2">Diesel</option>
+                            <option value="3">CNG</option>
+                        </select>
+                    
+                </div>
+                <div class="col-md-6">
+                    <label for="" class="form-label">Are you A Dealer or Individual?</label>
+                    <select class="form-select" name="sellerType" >
+                        <option selected>Select</option>
+                    <option value="Dealer">Dealer</option>
+                    <option value="Individual">Individual</option>
+                    </select>
+                </div>
+                <div class="col-md-12">
+                    <label for="" class="form-label">Transmission type?</label>
+                    <select class="form-select" name="transmissionType" >
+                        <option selected>Select</option>
+                        <option value="Mannual">Manual Car</option>
+                        <option value="Automatic">Automatic Car</option>
+                    </select>
+                </div>
+                <div class="col-md-12 " align="center">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <button type="submit" class="btn btn-primary ">Calculate Predicted Price</button>
+                        </div>
+                        <div class="col-md-6">
+                            <h3 class="led" style="background-color: yellow; background-size: 0ch;">{{ predictionOutPut }}</h3>
+                        </div>
+                    </div>                    
+                </div>
+                
+                
+                
+            </form>
+        </div>
+    </section>
+
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+    crossorigin="anonymous"></script>
+    <script>
+   
+        (function () {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()</script>
+
+</html>
